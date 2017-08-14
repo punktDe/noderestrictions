@@ -1,0 +1,5 @@
+PunktDe:
+  NodeRestrictions:
+    excludeRolesFromPackages:
+      - Neos.Neos
+      - Neos.Setup

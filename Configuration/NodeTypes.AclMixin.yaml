@@ -1,0 +1,17 @@
+'PunktDe.NodeRestrictions:AclMixin':
+  abstract: true
+  properties:
+    accessRestriction:
+      type: string
+      ui:
+        label: 'Restricted to role'
+        inspector:
+          group: visibility
+          position: 100
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            dataSourceIdentifier: punktde-noderestrictions-roles
+
+'Neos.Neos:Node':
+  superTypes:
+    'PunktDe.NodeRestrictions:AclMixin': true
