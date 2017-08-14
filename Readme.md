@@ -2,8 +2,7 @@
 
 ## What does it do
 
-The packages enables the Editor to restrict a node and its subnodes to a defined role using the backend inspector. All Roles 
-
+The packages enables the editor to restrict the access of a node and its subnodes to a defined role using the backend inspector.
 
 ## Configuration
 

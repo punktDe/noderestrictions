@@ -1,7 +1,8 @@
 {
-    "description": "",
+    "description": "The packages enables the editor to restrict the access of a node and its subnodes to a defined role using the backend inspector.",
     "type": "neos-package",
     "name": "punktde/noderestrictions",
+    "license": "MIT",
     "require": {
         "neos/flow": "*"
     },
