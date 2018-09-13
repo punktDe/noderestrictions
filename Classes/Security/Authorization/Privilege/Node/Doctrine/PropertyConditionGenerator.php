@@ -17,11 +17,6 @@ use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\PropertyCondition
 class PropertyConditionGenerator extends NeosPropertyConditionGenerator
 {
     /**
-     * @var string
-     */
-    protected $jsonbProperty;
-
-    /**
      * @param mixed $operandDefinition
      * @return PropertyConditionGenerator the current instance to allow for method chaining
      */
