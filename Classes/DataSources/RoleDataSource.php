@@ -17,7 +17,6 @@ use Neos\Flow\Annotations as Flow;
 
 class RoleDataSource extends AbstractDataSource
 {
-
     /**
      * @var string
      */
@@ -50,11 +49,20 @@ class RoleDataSource extends AbstractDataSource
     {
         $roles = ['' => ['label' => 'Not restricted']];
 
+        $matchPatternArray = function ($patternArray, $identifier): bool {
+            foreach ($patternArray as $pattern) {
+                if (fnmatch($pattern, $identifier) === true) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
         foreach ($this->policyService->getRoles() as $role) {
-            if (!in_array($role->getPackageKey(), $this->excludedPackages) && !in_array($role->getIdentifier(), $this->excludedRoles)) {
+            if (!$matchPatternArray($this->excludedPackages, $role->getPackageKey()) && !$matchPatternArray($this->excludedRoles, $role->getIdentifier())) {
                 $roles[$role->getIdentifier()] = [
                     'label' => $role->getName(),
-                    'icon' =>  'icon-users'
+                    'icon' => 'icon-users'
                 ];
             }
         }
