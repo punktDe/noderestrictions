@@ -32,10 +32,12 @@ In this example, we use the package [Flowpack.Neos.FrontendLogin](https://github
 	        
 ### Exclude Roles from Selection
 
-Some system roles, especially the backend roles shouldn't be displayed in the backend selector. You can exclude them using the setting: 
+Some system roles, especially the backend roles shouldn't be displayed in the backend selector. You can exclude them using the setting. Globbing is supported.: 
 
 	PunktDe:
 	  NodeRestrictions:
 	    excludeRolesFromPackages:
 	      - Neos.Neos
-	      - Neos.Setup
+	      - Flowpack.*
+        excludeSpecificRoles:
+          - Neos.Neos:Editor

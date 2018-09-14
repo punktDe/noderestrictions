@@ -3,3 +3,5 @@ PunktDe:
     excludeRolesFromPackages:
       - Neos.Neos
       - Neos.Setup
+    excludeSpecificRoles:
+      - Neos.Neos:Editor
