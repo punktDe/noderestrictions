@@ -37,7 +37,7 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
      * @param string $operandDefinition
      * @return string
      */
-    protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, string $propertyPointer, $operandDefinition = null)
+    protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, $propertyPointer, $operandDefinition = null)
     {
         $parentReturn = parent::getConstraintStringForSimpleProperty($sqlFilter, $propertyPointer, $operandDefinition);
 
