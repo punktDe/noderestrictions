@@ -38,13 +38,15 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
     {
         $parentReturn = parent::getConstraintStringForSimpleProperty($sqlFilter, $propertyPointer, $operandDefinition);
 
-        if ($parentReturn === null && $this->operator == '@>') {
+        if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() == "postgresql") {
+            if ($parentReturn === null && $this->operator == '@>') {
 
-            $operandDefinition = ($operandDefinition === null ? $this->operandDefinition : $operandDefinition);
+                $operandDefinition = ($operandDefinition === null ? $this->operandDefinition : $operandDefinition);
 
-            if ($this->getRawParameterValue($operandDefinition) !== null) {
-                $parameter = $sqlFilter->getParameter($operandDefinition);
-                return $propertyPointer . ' @> ' . $parameter;
+                if ($this->getRawParameterValue($operandDefinition) !== null) {
+                    $parameter = $sqlFilter->getParameter($operandDefinition);
+                    return $propertyPointer . ' @> ' . $parameter;
+                }
             }
         }
 
