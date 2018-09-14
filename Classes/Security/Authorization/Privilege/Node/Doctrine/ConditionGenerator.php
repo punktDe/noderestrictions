@@ -3,21 +3,31 @@
 namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrine;
 
 /*
- *  (c) 2017 punkt.de GmbH - Karlsruhe, Germany - http://punkt.de
- *  All rights reserved.
+ * This file is part of the PunktDe.NodeRestrictions package.
+ *
+ * This package is open source software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
  */
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\FalseConditionGenerator;
-use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\PropertyConditionGenerator;
 use Neos\ContentRepository\Security\Authorization\Privilege\Node\Doctrine\ConditionGenerator as NeosContentRepositoryConditionGenerator;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\SqlGeneratorInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+
 
 /**
  * {@inheritdoc}
  */
 class ConditionGenerator extends NeosContentRepositoryConditionGenerator
 {
+    /**
+     * @Flow\Inject
+     * @var ObjectManager
+     */
+    protected $entityManager;
+
     /**
      * @param string $property
      * @param mixed $value
@@ -30,6 +40,10 @@ class ConditionGenerator extends NeosContentRepositoryConditionGenerator
 
         if (!is_string($property) || is_array($value)) {
             return new FalseConditionGenerator();
+        }
+
+        if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() == "postgresql"){
+            return $propertyConditionGenerator->postgresJsonContains('{"' . trim($property) . '": ' . json_encode($value) . '}');
         }
 
         return $propertyConditionGenerator->like('%"' . trim($property) . '": ' . json_encode($value) . '%');
