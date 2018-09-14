@@ -30,6 +30,12 @@ class RoleDataSource extends AbstractDataSource
     protected $excludedPackages;
 
     /**
+     * @Flow\InjectConfiguration(path="excludeSpecificRoles")
+     * @var array
+     */
+    protected $excludedRoles;
+
+    /**
      * @Flow\Inject
      * @var PolicyService
      */
@@ -45,7 +51,7 @@ class RoleDataSource extends AbstractDataSource
         $roles = ['' => ['label' => 'Not restricted']];
 
         foreach ($this->policyService->getRoles() as $role) {
-            if (!in_array($role->getPackageKey(), $this->excludedPackages)) {
+            if (!in_array($role->getPackageKey(), $this->excludedPackages) && !in_array($role->getIdentifier(), $this->excludedRoles)) {
                 $roles[$role->getIdentifier()] = [
                     'label' => $role->getName(),
                     'icon' =>  'icon-users'

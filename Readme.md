@@ -39,3 +39,5 @@ Some system roles, especially the backend roles shouldn't be displayed in the ba
 	    excludeRolesFromPackages:
 	      - Neos.Neos
 	      - Neos.Setup
+        excludeSpecificRoles:
+          - Neos.Neos:Editor
