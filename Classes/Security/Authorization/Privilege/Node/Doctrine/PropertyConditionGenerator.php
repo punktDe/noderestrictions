@@ -3,8 +3,11 @@
 namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrine;
 
 /*
- *  (c) 2017 punkt.de GmbH - Karlsruhe, Germany - http://punkt.de
- *  All rights reserved.
+ * This file is part of the PunktDe.NodeRestrictions package.
+ *
+ * This package is open source software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
  */
 
 use Neos\Flow\Annotations as Flow;
@@ -20,7 +23,7 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
      * @param mixed $operandDefinition
      * @return PropertyConditionGenerator the current instance to allow for method chaining
      */
-    public function postgresJsonContains($operandDefinition)
+    public function postgresJsonContains($operandDefinition): PropertyConditionGenerator
     {
         $this->operator = '@>';
         $this->operandDefinition = $operandDefinition;
@@ -34,7 +37,7 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
      * @param string $operandDefinition
      * @return string
      */
-    protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, $propertyPointer, $operandDefinition = null)
+    protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, string $propertyPointer, $operandDefinition = null)
     {
         $parentReturn = parent::getConstraintStringForSimpleProperty($sqlFilter, $propertyPointer, $operandDefinition);
 
