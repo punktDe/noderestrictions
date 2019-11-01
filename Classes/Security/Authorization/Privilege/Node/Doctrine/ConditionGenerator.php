@@ -11,11 +11,12 @@ namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrin
  * source code.
  */
 
+use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\EntityManagerInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\FalseConditionGenerator;
 use Neos\ContentRepository\Security\Authorization\Privilege\Node\Doctrine\ConditionGenerator as NeosContentRepositoryConditionGenerator;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\SqlGeneratorInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 
 
 /**
@@ -25,7 +26,7 @@ class ConditionGenerator extends NeosContentRepositoryConditionGenerator
 {
     /**
      * @Flow\Inject
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
@@ -34,8 +35,9 @@ class ConditionGenerator extends NeosContentRepositoryConditionGenerator
      * @param mixed $value
      *
      * @return SqlGeneratorInterface
+     * @throws DBALException
      */
-    public function nodePropertyIs($property, $value)
+    public function nodePropertyIs(string $property, $value): SqlGeneratorInterface
     {
         $propertyConditionGenerator = new PropertyConditionGenerator('properties');
 
@@ -43,7 +45,7 @@ class ConditionGenerator extends NeosContentRepositoryConditionGenerator
             return new FalseConditionGenerator();
         }
 
-        if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() === "postgresql"){
+        if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() === "postgresql") {
             return $propertyConditionGenerator->postgresJsonContains('{"' . trim($property) . '": ' . json_encode($value) . '}');
         }
 
@@ -55,8 +57,9 @@ class ConditionGenerator extends NeosContentRepositoryConditionGenerator
      * @param mixed $value
      *
      * @return SqlGeneratorInterface
+     * @throws DBALException
      */
-    public function parentNodePropertyIs($property, $value)
+    public function parentNodePropertyIs(string $property, $value): SqlGeneratorInterface
     {
         $propertiesConditionGenerator = $this->nodePropertyIs($property, $value);
         $subQueryGenerator = new ParentNodePropertyGenerator($propertiesConditionGenerator);
