@@ -4,7 +4,8 @@
     "name": "punktde/noderestrictions",
     "license": "MIT",
     "require": {
-        "neos/neos": "*"
+        "ext-json": "*",
+        "neos/neos": "^3.0 || ^4.0"
     },
     "autoload": {
         "psr-4": {
