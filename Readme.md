@@ -1,5 +1,7 @@
 # PunktDe NodeRestrictions
 
+[![Latest Stable Version](https://poser.pugx.org/punktDe/noderestrictions/v/stable)](https://packagist.org/packages/punktDe/noderestrictions) [![Total Downloads](https://poser.pugx.org/punktDe/noderestrictions/downloads)](https://packagist.org/packages/punktDe/noderestrictions) [![License](https://poser.pugx.org/punktDe/noderestrictions/license)](https://packagist.org/packages/punktDe/noderestrictions)
+
 ## What does it do
 
 The packages enables the editor to restrict the access of a node and its subnodes to a defined role using the backend inspector.
