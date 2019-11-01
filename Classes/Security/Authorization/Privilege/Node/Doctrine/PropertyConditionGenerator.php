@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrine;
 
@@ -36,6 +37,7 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
      * @param string $propertyPointer
      * @param string $operandDefinition
      * @return string
+     * @throws \Doctrine\DBAL\DBALException
      */
     protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, $propertyPointer, $operandDefinition = null)
     {

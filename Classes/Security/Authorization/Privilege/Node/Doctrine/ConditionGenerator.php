@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrine;
 
@@ -42,7 +43,7 @@ class ConditionGenerator extends NeosContentRepositoryConditionGenerator
             return new FalseConditionGenerator();
         }
 
-        if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() == "postgresql"){
+        if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() === "postgresql"){
             return $propertyConditionGenerator->postgresJsonContains('{"' . trim($property) . '": ' . json_encode($value) . '}');
         }
 

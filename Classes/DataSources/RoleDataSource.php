@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PunktDe\NodeRestrictions\DataSources;
 
@@ -45,7 +46,7 @@ class RoleDataSource extends AbstractDataSource
      * @param array $arguments
      * @return array
      */
-    public function getData(NodeInterface $node = null, array $arguments)
+    public function getData(NodeInterface $node = null, array $arguments = [])
     {
         $roles = ['' => ['label' => 'Not restricted']];
 
