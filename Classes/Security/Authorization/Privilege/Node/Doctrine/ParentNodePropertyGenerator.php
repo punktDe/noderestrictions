@@ -11,7 +11,7 @@ namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrin
  * source code.
  */
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter as DoctrineSqlFilter;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\SqlGeneratorInterface;
 use Neos\Flow\Annotations as Flow;
