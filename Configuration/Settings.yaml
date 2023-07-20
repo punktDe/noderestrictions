@@ -5,3 +5,12 @@ PunktDe:
       - Neos.Setup
     excludeSpecificRoles:
       - Neos.Neos:Editor
+#    overwriteRoles:
+#      'Foo.Bar:DemoRole':
+#        source: 'Main'
+#        package: 'Foo.Bar'
+#        icon: 'fas fa-cogs'
+#    translation:
+#      id: 'defaultValue'
+#      source: 'Roles'
+#      package: 'PunktDe.NodeRestrictions'
