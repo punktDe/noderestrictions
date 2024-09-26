@@ -12,7 +12,7 @@ namespace PunktDe\NodeRestrictions\Security\Authorization\Privilege\Node\Doctrin
  */
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\SQLFilter;
+use Doctrine\ORM\Query\Filter\SQLFilter as DoctrineSqlFilter;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\PropertyConditionGenerator as NeosPropertyConditionGenerator;
 
 /**
@@ -33,13 +33,13 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
     }
 
     /**
-     * @param SQLFilter $sqlFilter
+     * @param DoctrineSqlFilter $sqlFilter
      * @param string $propertyPointer
      * @param string $operandDefinition
      * @return string
      * @throws \Doctrine\DBAL\DBALException
      */
-    protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, $propertyPointer, $operandDefinition = null)
+    protected function getConstraintStringForSimpleProperty(DoctrineSqlFilter $sqlFilter, $propertyPointer, $operandDefinition = null)
     {
         try {
             $parentReturn = parent::getConstraintStringForSimpleProperty($sqlFilter, $propertyPointer, $operandDefinition);
