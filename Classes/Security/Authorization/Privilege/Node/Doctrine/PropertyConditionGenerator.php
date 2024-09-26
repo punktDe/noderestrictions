@@ -41,7 +41,15 @@ class PropertyConditionGenerator extends NeosPropertyConditionGenerator
      */
     protected function getConstraintStringForSimpleProperty(SQLFilter $sqlFilter, $propertyPointer, $operandDefinition = null)
     {
-        $parentReturn = parent::getConstraintStringForSimpleProperty($sqlFilter, $propertyPointer, $operandDefinition);
+        try {
+            $parentReturn = parent::getConstraintStringForSimpleProperty($sqlFilter, $propertyPointer, $operandDefinition);
+        } catch (\Exception $e) {
+            if ($this->operator == '@>') {
+                $parentReturn = null;
+            } else {
+                throw $e;
+            }
+        }
 
         if ($this->entityManager->getConnection()->getDatabasePlatform()->getName() == "postgresql") {
             if ($parentReturn === null && $this->operator == '@>') {
